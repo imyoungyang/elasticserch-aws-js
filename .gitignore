@@ -3,3 +3,5 @@ stale
 lambda-payloads.json
 package-lock.json
 .application.json
+.cache
+dist

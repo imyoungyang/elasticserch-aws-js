@@ -156,3 +156,5 @@ Access via cURL, be sure to use the -k option to ignore the security certificate
 ## Reference
 * AWS sample code for s3 streaming to elastic search [here](https://github.com/aws-samples/amazon-elasticsearch-lambda-samples). But, it is not easy to handle. It is use "chunk" to send data.
 * [AWS proxy to access es](https://www.jeremydaly.com/access-aws-vpc-based-elasticsearch-cluster-locally/)
+* [ReactJS SearchBox](https://dev.to/iam_timsmith/lets-build-a-search-bar-in-react-120j)
+
