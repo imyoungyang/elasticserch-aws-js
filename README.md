@@ -119,7 +119,40 @@ index: 'files'
 });
 ```
 
+# Tunnel to VPC Elasticsearch
+
+## Step 1:
+EC2 instance running in the same VPC as your Elasticsearch cluster.
+
+## Step 2:
+Create an entry in your SSH config file (~/.ssh/config on a Mac):
+
+```
+# Elasticsearch Tunnel
+Host estunnel
+HostName 12.34.56.78 # your server's public IP address
+User ec2-user
+IdentitiesOnly yes
+IdentityFile ~/.ssh/MY-KEY.pem
+LocalForward 9200 vpc-YOUR-ES-CLUSTER.us-east-1.es.amazonaws.com:443
+```
+
+## Step 3:
+
+Run `ssh estunnel -N` in terminal
+
+## Step 4:
+
+Access via a web browser, ignore the invalid SSL certificate:
+
+* Search: https://localhost:9200
+* Kibana: https://localhost:9200/_plugin/kibana
+
+Access via cURL, be sure to use the -k option to ignore the security certificate:
+
+`curl -k https://localhost:9200/`
+
 
 ## Reference
 * AWS sample code for s3 streaming to elastic search [here](https://github.com/aws-samples/amazon-elasticsearch-lambda-samples). But, it is not easy to handle. It is use "chunk" to send data.
-
+* [AWS proxy to access es](https://www.jeremydaly.com/access-aws-vpc-based-elasticsearch-cluster-locally/)
