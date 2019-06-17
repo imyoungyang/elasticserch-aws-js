@@ -1,0 +1,5 @@
+node_modules
+stale
+lambda-payloads.json
+package-lock.json
+.application.json
