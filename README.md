@@ -118,3 +118,8 @@ q: '测试',
 index: 'files'
 });
 ```
+
+
+## Reference
+* AWS sample code for s3 streaming to elastic search [here](https://github.com/aws-samples/amazon-elasticsearch-lambda-samples). But, it is not easy to handle. It is use "chunk" to send data.
+
