@@ -2,11 +2,11 @@ const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 
 const { createESClient } = require('./es_client.js');
-const node = 'es endpoint with https';
+const node = process.env.ES_ENDPOINT;
 const esclient = createESClient(node);
 
-const bucket = 'bucket Name';
-const key = 'complex.pdf';
+const bucket = process.env.BUCKET_NAME;
+const key = process.env.KEY_NAME;
 
 const getPdfAttachment = (bucket, key) => {
   return new Promise((resolve, reject) => {

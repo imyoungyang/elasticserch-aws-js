@@ -11,4 +11,53 @@ Resources:
       MemorySize: 128
       Timeout: 15
       Role:
-        'Fn::Sub': 'arn:aws:iam::${AWS::AccountId}:role/lambda_basic_execution_s3_full_access'
+        'Fn::Sub': >-
+          arn:aws:iam::${AWS::AccountId}:role/lambda_basic_execution_s3_full_access
+      Environment:
+        Variables:
+          ES_ENDPOINT: >-
+            https://search-pubes-sqvbeqeqbskpg3yn2mfvjby7hu.us-east-1.es.amazonaws.com
+          BUCKET_NAME: app-hkaa-textract
+          KEY_NAME: source-files/test-cn.pdf
+  s3LambdaES:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: s3LambdaES/index.handler
+      Runtime: nodejs8.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15
+      Role:
+        'Fn::Sub': >-
+          arn:aws:iam::${AWS::AccountId}:role/lambda_basic_execution_s3_full_access
+      Environment:
+        Variables:
+          ES_ENDPOINT: >-
+            https://vpc-hkaa-h5rxoodljyysipf26ptt7i7bxe.us-east-1.es.amazonaws.com
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-6dbd1c27
+        SubnetIds:
+          - subnet-8ae556a4
+          - subnet-1bfcb951
+  initESAttachment:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: initESAttachment/index.handler
+      Runtime: nodejs8.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15
+      Role:
+        'Fn::Sub': >-
+          arn:aws:iam::${AWS::AccountId}:role/lambda_basic_execution_s3_full_access
+      Environment:
+        Variables:
+          ES_ENDPOINT: >-
+            https://vpc-hkaa-h5rxoodljyysipf26ptt7i7bxe.us-east-1.es.amazonaws.com
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-6dbd1c27
+        SubnetIds:
+          - subnet-8ae556a4
+          - subnet-1bfcb951

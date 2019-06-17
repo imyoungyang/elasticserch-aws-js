@@ -1,0 +1,14 @@
+{
+  "name": "initESAttachment",
+  "version": "1.0.0",
+  "description": "initial elasticsearch pipeline for attachment",
+  "main": "index.js",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beyoung@amazon.com"
+}
