@@ -1,0 +1,14 @@
+{
+  "name": "keywordSearch",
+  "version": "1.0.0",
+  "description": "An example Lambda function that's keywordSearch to elastic search",
+  "main": "index.js",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beyoung@amazon.com"
+}

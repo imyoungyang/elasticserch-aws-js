@@ -61,3 +61,41 @@ Resources:
         SubnetIds:
           - subnet-8ae556a4
           - subnet-1bfcb951
+  keywordSearch:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: keywordSearch/index.handler
+      Runtime: nodejs8.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15
+      Role:
+        'Fn::Sub': >-
+          arn:aws:iam::${AWS::AccountId}:role/lambda_basic_execution_s3_full_access
+      Environment:
+        Variables:
+          ES_ENDPOINT: >-
+            https://vpc-hkaa-h5rxoodljyysipf26ptt7i7bxe.us-east-1.es.amazonaws.com
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-6dbd1c27
+        SubnetIds:
+          - subnet-8ae556a4
+          - subnet-1bfcb951
+      Events:
+        LambdaMicroservice:
+          Type: Api
+          Properties:
+            Path: /search
+            Method: GET
+  keywordSearchPermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        'Fn::GetAtt':
+          - keywordSearch
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        'Fn::Sub': 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*/*'
